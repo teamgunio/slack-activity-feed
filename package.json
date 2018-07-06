@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/teamgunio/slack-activity-feed/issues"
   },
-  "homepage": "https://github.com/teamgunio/slack-activity-feed#readme"
+  "homepage": "https://github.com/teamgunio/slack-activity-feed#readme",
+  "devDependencies": {
+    "standard-version": "^4.4.0"
+  }
 }
