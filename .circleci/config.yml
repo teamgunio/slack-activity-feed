@@ -11,32 +11,14 @@ jobs:
           command: |
             npm install
             npm test
-      - restore_cache:
-          keys:
-            - v1-{{ .Branch }}
-          paths:
-            - /caches/app.tar
-      - run:
-          name: Load Docker image layer cache
-          command: |
-            set +o pipefail
-            docker load -i /caches/app.tar | true
       - run:
           name: Build
           command: |
             npm run build
             docker login -u "${DOCKER_USER}" -p "${DOCKER_PASS}"
             docker build --cache-from=app -t ${DOCKER_USER}/slack-activity-feed:${CIRCLE_SHA1} .
-            docker push ${DOCKER_USER}/slack-activity-feed:${CIRCLE_SHA1}
-      - run:
-          name: Save Docker image layer cache
-          command: |
-            mkdir -p /caches
-            docker save -o /caches/app.tar ${DOCKER_USER}/slack-activity-feed:${CIRCLE_SHA1}
-      - save_cache:
-          key: v1-{{ .Branch }}-{{ epoch }}
-          paths:
-            - /caches/app.tar
+            docker tag ${DOCKER_USER}/slack-activity-feed:${CIRCLE_SHA1} ${DOCKER_USER}/slack-activity-feed:latest
+            docker push ${DOCKER_USER}/slack-activity-feed
 
   deploy:
     docker:
@@ -60,8 +42,13 @@ jobs:
       - run:
           name: Deploy
           command: |
-            docker login -u "${DOCKER_USER}" -p "${DOCKER_PASS}"
-            docker images
+            sed -i'' -e "s;%BUILD_NUM%;${CIRCLE_SHA1};g" ./.deploy/Dockerrun.aws.json
+            sed -i'' -e "s;%CLIENT_ID%;${CLIENT_ID};g" ./.deploy/Dockerrun.aws.json
+            sed -i'' -e "s;%CLIENT_SECRET%;${CLIENT_SECRET};g" ./.deploy/Dockerrun.aws.json
+            sed -i'' -e "s;%HOST_PORT%;${HOST_PORT};g" ./.deploy/Dockerrun.aws.json
+            cd .deploy && eb init -r us-east-1 slack-activity-feed
+            cd .deploy && eb deploy -l ${CIRCLE_SHA1}
+
 
 workflows:
   version: 2

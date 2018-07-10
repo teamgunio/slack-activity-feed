@@ -1,0 +1,31 @@
+{
+  "AWSEBDockerrunVersion": 2,
+  "containerDefinitions": [
+    {
+      "name": "slack-activity-feed",
+      "image": "dermidgen/slack-activity-feed:%BUILD_NUM%",
+      "environment": [
+        {
+          "name": "CLIENT_ID",
+          "value": "%CLIENT_ID%"
+        },
+        {
+          "name": "CLIENT_SECRET",
+          "value": "%CLIENT_SECRET%"
+        },
+        {
+          "name": "HOST_PORT",
+          "value": "%HOST_PORT%"
+        }
+      ],
+      "essential": true,
+      "memory": 128,
+      "portMappings": [
+        {
+          "hostPort": 80,
+          "containerPort": %HOST_PORT%
+        }
+      ]
+    },
+  ]
+}
