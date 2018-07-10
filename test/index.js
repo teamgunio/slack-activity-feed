@@ -1,17 +1,24 @@
 import {} from 'dotenv/config';
 
-import http from 'http';
+import request from 'supertest';
 import assert from 'assert';
 
-import '../lib/index.js';
-
-const PORT = process.env.HTTP_PORT;
+import app from '../lib/index.js';
 
 describe('Example Node Server', () => {
+  let server;
+
+  before(() => {
+    server = app.listen();
+  })
+  
+  after(() => {
+    server.close();
+  })
+
   it('should return 200', done => {
-    http.get(`http://127.0.0.1:${PORT}`, res => {
-      assert.equal(200, res.statusCode);
-      done();
-    });
+    request(server)
+      .get('/')
+      .expect(200, done)
   });
 });
