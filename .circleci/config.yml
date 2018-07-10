@@ -4,8 +4,6 @@ jobs:
     docker:
       - image: circleci/node:8
     steps:
-      - attach_workspace:
-          at: /tmp/workspace
       - checkout
       - setup_remote_docker
       - run:
@@ -14,7 +12,7 @@ jobs:
             npm install
             npm test
             npm run build
-            docker login -e "${DOCKER_EMAIL}" -u "${DOCKER_USER}" -p "${DOCKER_PASS}"
+            docker login -u "${DOCKER_USER}" -p "${DOCKER_PASS}"
             docker build -t slack-activity-feed:${CIRCLE_SHA1} .
 
   deploy:
