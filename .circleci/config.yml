@@ -8,6 +8,7 @@ jobs:
       - run:
           name: Setup, Test & Build
           command: |
+            cp .env.distrib .env
             npm install
             npm test
             docker build slack-activity-feed:$CIRCLE_BUILD_NUM .
