@@ -52,7 +52,7 @@ jobs:
           shell: /bin/sh
           working_directory: .deploy
           no_output_timeout: 1m
-          command: yes Y | deploy -l ${CIRCLE_SHA1})
+          command: yes Y | eb deploy -l ${CIRCLE_SHA1})
 
 
 workflows:
