@@ -15,9 +15,6 @@ jobs:
           name: Build
           command: |
             npm run build
-            echo $DOCKER_USER
-            echo ${DOCKER_USER}
-            echo "${DOCKER_USER}"
             docker login -u "${DOCKER_USER}" -p "${DOCKER_PASS}"
             docker build -t ${DOCKER_USER}/slack-activity-feed:${CIRCLE_SHA1} .
             docker push ${DOCKER_USER}/slack-activity-feed:${CIRCLE_SHA1}
@@ -27,6 +24,7 @@ jobs:
       - image: circleci/python:2.7
     steps:
       - checkout
+      - setup_remote_docker
       - run:
           name: Create AWS credentials manually
           command: |
@@ -45,7 +43,7 @@ jobs:
           name: Push docker image
           command: |
             docker login -u "${DOCKER_USER}" -p "${DOCKER_PASS}"
-            docker push ${DOCKER_USER}/slack-activity-feed:${CIRCLE_SHA1}
+            docker images
 
 workflows:
   version: 2
