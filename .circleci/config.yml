@@ -16,9 +16,19 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Install awscli
+          name: Create AWS credentials manually
           command: |
-            sudo pip install awsebcli --upgrade
+            mkdir ~/.aws
+            touch ~/.aws/config
+            chmod 600 ~/.aws/config
+            echo "[profile eb-cli]" > ~/.aws/config
+            echo "aws_access_key_id=$AWS_ACCESS_KEY_ID" >> ~/.aws/config
+            echo "aws_secret_access_key=$AWS_SECRET_ACCESS_KEY" >> ~/.aws/config
+      - run:
+          name: Install aws cli tools
+          command: |
+            pip install awscli --upgrade --user
+            pip install awsebcli --upgrade --user
 
 workflows:
   version: 2
