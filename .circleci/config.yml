@@ -23,8 +23,8 @@ jobs:
             touch ~/.aws/config
             chmod 600 ~/.aws/config
             echo "[profile eb-cli]" > ~/.aws/config
-            echo "aws_access_key_id=$AWS_ACCESS_KEY_ID" >> ~/.aws/config
-            echo "aws_secret_access_key=$AWS_SECRET_ACCESS_KEY" >> ~/.aws/config
+            echo "aws_access_key_id=${AWS_ACCESS_KEY_ID}" >> ~/.aws/config
+            echo "aws_secret_access_key=${AWS_SECRET_ACCESS_KEY}" >> ~/.aws/config
       - run:
           name: Install aws cli tools
           command: |
@@ -35,8 +35,8 @@ jobs:
       - run:
           name: Build & push Docker image
           command: |
-            docker login -e "$DOCKER_EMAIL" -u "$DOCKER_USER" -p "$DOCKER_PASS"
-            docker build -t slack-activity-feed:$CIRCLE_BUILD_NUM .
+            docker login -e "${DOCKER_EMAIL}" -u "${DOCKER_USER}" -p "${DOCKER_PASS}"
+            docker build -t slack-activity-feed:${CIRCLE_SHA1} .
 
 workflows:
   version: 2
