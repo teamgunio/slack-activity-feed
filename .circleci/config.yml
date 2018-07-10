@@ -41,15 +41,16 @@ jobs:
             sudo pip install awsebcli --upgrade
       - run:
           name: Deploy
+          shell: /bin/bash
           command: |
             sed -i'' -e "s;%BUILD_NUM%;${CIRCLE_SHA1};g" ./.deploy/Dockerrun.aws.json
             sed -i'' -e "s;%CLIENT_ID%;${CLIENT_ID};g" ./.deploy/Dockerrun.aws.json
             sed -i'' -e "s;%CLIENT_SECRET%;${CLIENT_SECRET};g" ./.deploy/Dockerrun.aws.json
             sed -i'' -e "s;%HOST_PORT%;${HOST_PORT};g" ./.deploy/Dockerrun.aws.json
             cd .deploy && eb init -r us-east-1 slack-activity-feed
-            cd .deploy && spawn eb deploy --quiet -l ${CIRCLE_SHA1}) && \
-              expect "It appears you are using Multi-container Docker. Is this correct?\n(Y/n):" && \
-              send "Y\n"
+            set +eo pipefail
+            pwd
+            cd .deploy && yes Y | deploy --quiet -l ${CIRCLE_SHA1})
 
 
 workflows:
