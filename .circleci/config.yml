@@ -47,7 +47,7 @@ jobs:
             sed -i'' -e "s;%CLIENT_SECRET%;${CLIENT_SECRET};g" ./.deploy/Dockerrun.aws.json
             sed -i'' -e "s;%HOST_PORT%;${HOST_PORT};g" ./.deploy/Dockerrun.aws.json
             cd .deploy
-            printf 'Y\n1\nN\n' | eb init -r us-east-1 slack-activity-feed
+            eb init -r us-east-1 slack-activity-feed
             eb deploy production --verbose -l ${CIRCLE_SHA1}
 
 workflows:
