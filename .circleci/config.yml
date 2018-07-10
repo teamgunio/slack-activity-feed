@@ -48,7 +48,7 @@ jobs:
             sed -i'' -e "s;%HOST_PORT%;${HOST_PORT};g" ./.deploy/Dockerrun.aws.json
             cd .deploy && eb init -r us-east-1 slack-activity-feed
             echo $SHELL
-            cd .deploy && bash -c -l "yes 1Y | eb deploy --quiet -l ${CIRCLE_SHA1}"
+            cd .deploy && eb deploy --quiet -l ${CIRCLE_SHA1} <<< $'2\nY\n'
 
 
 workflows:
