@@ -6,19 +6,19 @@ jobs:
     steps:
       - checkout
       - run:
-        name: Setup, Test & Build
-          npm install
-          npm test
-          docker build slack-activity-feed:$CIRCLE_BUILD_NUM .
+          name: Setup, Test & Build
+            npm install
+            npm test
+            docker build slack-activity-feed:$CIRCLE_BUILD_NUM .
   deploy:
     docker:
       - image: circleci/python:2.7
     steps:
       - checkout
       - run:
-        name: Install awscli
-        command: |
-          sudo pip install awsebcli --upgrade
+          name: Install awscli
+          command: |
+            sudo pip install awsebcli --upgrade
 
 workflows:
   version: 2
