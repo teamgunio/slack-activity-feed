@@ -8,10 +8,9 @@ jobs:
       - run:
           name: Setup, Test & Build
           command: |
-            cp .env.distrib .env
             npm install
             npm test
-            docker build slack-activity-feed:$CIRCLE_BUILD_NUM .
+            docker build -t slack-activity-feed:$CIRCLE_BUILD_NUM .
   deploy:
     docker:
       - image: circleci/python:2.7
