@@ -6,16 +6,9 @@ jobs:
     steps:
       - checkout
       - run:
-        name: Setup
-        command: |
+        name: Setup, Test & Build
           npm install
-      - run:
-        name: Test
-        command: |
           npm test
-      - run:
-        name: Build
-        command: |
           docker build slack-activity-feed:$CIRCLE_BUILD_NUM .
   deploy:
     docker:
@@ -26,3 +19,15 @@ jobs:
         name: Install awscli
         command: |
           sudo pip install awsebcli --upgrade
+
+workflows:
+  version: 2
+  build-deploy:
+    jobs:
+      - build
+      - deploy:
+          requires:
+            - build
+          filters:
+            branches:
+              only: master
