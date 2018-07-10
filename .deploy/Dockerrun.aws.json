@@ -15,7 +15,7 @@
         },
         {
           "name": "HOST_PORT",
-          "value": "%HOST_PORT%"
+          "value": "3000"
         }
       ],
       "essential": true,
@@ -23,7 +23,7 @@
       "portMappings": [
         {
           "hostPort": 80,
-          "containerPort": %HOST_PORT%
+          "containerPort": 3000
         }
       ]
     }
