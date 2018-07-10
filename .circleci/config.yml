@@ -47,7 +47,9 @@ jobs:
             sed -i'' -e "s;%CLIENT_SECRET%;${CLIENT_SECRET};g" ./.deploy/Dockerrun.aws.json
             sed -i'' -e "s;%HOST_PORT%;${HOST_PORT};g" ./.deploy/Dockerrun.aws.json
             cd .deploy && eb init -r us-east-1 slack-activity-feed
-            cd .deploy && (printf 'Y\nY\nY\n' | eb deploy --quiet -l ${CIRCLE_SHA1})
+            cd .deploy && spawn eb deploy --quiet -l ${CIRCLE_SHA1}) && \
+              expect "It appears you are using Multi-container Docker. Is this correct?\n(Y/n):" && \
+              send "Y\n"
 
 
 workflows:
