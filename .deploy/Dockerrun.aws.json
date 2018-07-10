@@ -26,6 +26,6 @@
           "containerPort": %HOST_PORT%
         }
       ]
-    },
+    }
   ]
 }
