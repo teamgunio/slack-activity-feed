@@ -7,20 +7,26 @@ jobs:
       - checkout
       - setup_remote_docker
       - run:
-          name: Setup, Test & Build
+          name: Test
           command: |
             npm install
             npm test
+      - run:
+          name: Build
+          command: |
             npm run build
+            echo $DOCKER_USER
+            echo ${DOCKER_USER}
+            echo "${DOCKER_USER}"
             docker login -u "${DOCKER_USER}" -p "${DOCKER_PASS}"
-            docker build -t dermidgen/slack-activity-feed:${CIRCLE_SHA1} .
+            docker build -t ${DOCKER_USER}/slack-activity-feed:${CIRCLE_SHA1} .
+            docker push ${DOCKER_USER}/slack-activity-feed:${CIRCLE_SHA1}
 
   deploy:
     docker:
       - image: circleci/python:2.7
     steps:
       - checkout
-      - setup_remote_docker
       - run:
           name: Create AWS credentials manually
           command: |
@@ -39,7 +45,7 @@ jobs:
           name: Push docker image
           command: |
             docker login -u "${DOCKER_USER}" -p "${DOCKER_PASS}"
-            docker push dermidgen/slack-activity-feed:${CIRCLE_SHA1}
+            docker push ${DOCKER_USER}/slack-activity-feed:${CIRCLE_SHA1}
 
 workflows:
   version: 2
