@@ -11,20 +11,38 @@ jobs:
           command: |
             npm install
             npm test
+      - restore_cache:
+          keys:
+            - v1-{{ .Branch }}
+          paths:
+            - /caches/app.tar
+      - run:
+          name: Load Docker image layer cache
+          command: |
+            set +o pipefail
+            docker load -i /caches/app.tar | true
       - run:
           name: Build
           command: |
             npm run build
             docker login -u "${DOCKER_USER}" -p "${DOCKER_PASS}"
-            docker build -t ${DOCKER_USER}/slack-activity-feed:${CIRCLE_SHA1} .
+            docker build --cache-from=app -t ${DOCKER_USER}/slack-activity-feed:${CIRCLE_SHA1} .
             docker push ${DOCKER_USER}/slack-activity-feed:${CIRCLE_SHA1}
+      - run:
+          name: Save Docker image layer cache
+          command: |
+            mkdir -p /caches
+            docker save -o /caches/app.tar ${DOCKER_USER}/slack-activity-feed:${CIRCLE_SHA1}
+      - save_cache:
+          key: v1-{{ .Branch }}-{{ epoch }}
+          paths:
+            - /caches/app.tar
 
   deploy:
     docker:
       - image: circleci/python:2.7
     steps:
       - checkout
-      - setup_remote_docker
       - run:
           name: Create AWS credentials manually
           command: |
@@ -40,7 +58,7 @@ jobs:
             pip install awscli --upgrade --user
             pip install awsebcli --upgrade --user
       - run:
-          name: Push docker image
+          name: Deploy
           command: |
             docker login -u "${DOCKER_USER}" -p "${DOCKER_PASS}"
             docker images
