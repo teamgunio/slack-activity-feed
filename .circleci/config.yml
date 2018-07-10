@@ -14,9 +14,8 @@ jobs:
             npm install
             npm test
             npm run build
-      - persist_to_workspace:
-          root: /tmp/workspace
-          paths: dist
+            docker login -e "${DOCKER_EMAIL}" -u "${DOCKER_USER}" -p "${DOCKER_PASS}"
+            docker build -t slack-activity-feed:${CIRCLE_SHA1} .
 
   deploy:
     docker:
