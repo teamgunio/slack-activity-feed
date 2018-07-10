@@ -1,19 +1,24 @@
 version: 2
 jobs:
   build:
-    working_directory: /app
     docker:
       - image: circleci/node:8
     steps:
+      - attach_workspace:
+          at: /tmp/workspace
       - checkout
+      - setup_remote_docker
       - run:
           name: Setup, Test & Build
           command: |
             npm install
             npm test
             npm run build
+      - persist_to_workspace:
+          root: /tmp/workspace
+          paths: dist
+
   deploy:
-    working_directory: /app
     docker:
       - image: docker:17.05.0-ce-git
     steps:
