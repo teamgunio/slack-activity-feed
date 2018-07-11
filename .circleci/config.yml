@@ -45,6 +45,8 @@ jobs:
             sed -i'' -e "s;%BUILD_NUM%;${CIRCLE_SHA1};g" ./.deploy/Dockerrun.aws.json
             sed -i'' -e "s;%CLIENT_ID%;${CLIENT_ID};g" ./.deploy/Dockerrun.aws.json
             sed -i'' -e "s;%CLIENT_SECRET%;${CLIENT_SECRET};g" ./.deploy/Dockerrun.aws.json
+            sed -i'' -e "s;%CLIENT_TOKEN%;${CLIENT_TOKEN};g" ./.deploy/Dockerrun.aws.json
+            sed -i'' -e "s;%CHANNEL%;${CHANNEL};g" ./.deploy/Dockerrun.aws.json
             sed -i'' -e "s;%HOST_PORT%;${HOST_PORT};g" ./.deploy/Dockerrun.aws.json
             cd .deploy
             eb init -r us-east-1 slack-activity-feed

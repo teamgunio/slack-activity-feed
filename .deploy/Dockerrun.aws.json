@@ -14,6 +14,14 @@
           "value": "%CLIENT_SECRET%"
         },
         {
+          "name": "CLIENT_TOKEN",
+          "value": "%CLIENT_TOKEN%"
+        },
+        {
+          "name": "CHANNEL",
+          "value": "%CHANNEL%"
+        },
+        {
           "name": "HOST_PORT",
           "value": "3000"
         }
