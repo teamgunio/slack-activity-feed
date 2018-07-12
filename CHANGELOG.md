@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.3.3"></a>
+## [1.3.3](https://github.com/teamgunio/slack-activity-feed/compare/v1.3.2...v1.3.3) (2018-07-12)
+
+
+### Bug Fixes
+
+* **ActivityFeed:** GCSAF-32 pass the bot_id to the bot info lookup ([cd4d6e5](https://github.com/teamgunio/slack-activity-feed/commit/cd4d6e5))
+
+
+
 <a name="1.3.2"></a>
 ## [1.3.2](https://github.com/teamgunio/slack-activity-feed/compare/v1.3.1...v1.3.2) (2018-07-12)
 
