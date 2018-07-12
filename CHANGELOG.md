@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.5.0"></a>
+# [1.5.0](https://github.com/teamgunio/slack-activity-feed/compare/v1.4.0...v1.5.0) (2018-07-12)
+
+
+### Features
+
+* **ActivityFeed:** GCSAF-32 adds attachement coloring, pre_text, and fallback ([a0a91da](https://github.com/teamgunio/slack-activity-feed/commit/a0a91da))
+
+
+
 <a name="1.4.0"></a>
 # [1.4.0](https://github.com/teamgunio/slack-activity-feed/compare/v1.3.3...v1.4.0) (2018-07-12)
 
