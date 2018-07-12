@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.2.2"></a>
+## [1.2.2](https://github.com/teamgunio/slack-activity-feed/compare/v1.2.1...v1.2.2) (2018-07-12)
+
+
+### Bug Fixes
+
+* **ActivityFeed:** GCSAF-32 don't ignore bot messages, we'll ignore channel_leave instead ([b8bb432](https://github.com/teamgunio/slack-activity-feed/commit/b8bb432))
+
+
+
 <a name="1.2.1"></a>
 ## [1.2.1](https://github.com/teamgunio/slack-activity-feed/compare/v1.2.0...v1.2.1) (2018-07-12)
 

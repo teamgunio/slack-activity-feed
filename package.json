@@ -1,6 +1,6 @@
 {
   "name": "slack-activity-feed",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "Slack app for aggregating activity from multiple channels into a single channel",
   "main": "index.js",
   "scripts": {
