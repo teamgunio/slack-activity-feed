@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.3.0"></a>
+# [1.3.0](https://github.com/teamgunio/slack-activity-feed/compare/v1.2.2...v1.3.0) (2018-07-12)
+
+
+### Features
+
+* **ActivityFeed:** GCSAF-32 introduces bot look ups and posts the attachment of a bot message; adds a fixture for a sample bot messages for tests ([d1bd335](https://github.com/teamgunio/slack-activity-feed/commit/d1bd335))
+
+
+
 <a name="1.2.2"></a>
 ## [1.2.2](https://github.com/teamgunio/slack-activity-feed/compare/v1.2.1...v1.2.2) (2018-07-12)
 
