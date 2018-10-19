@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.5.4"></a>
+## [1.5.4](https://github.com/teamgunio/slack-activity-feed/compare/v1.5.3...v1.5.4) (2018-10-19)
+
+
+### Bug Fixes
+
+* ignore message_changed events; better attachment handling; better error handling for user_not_found ([61f5858](https://github.com/teamgunio/slack-activity-feed/commit/61f5858))
+
+
+
 <a name="1.5.3"></a>
 ## [1.5.3](https://github.com/teamgunio/slack-activity-feed/compare/v1.5.2...v1.5.3) (2018-10-19)
 
