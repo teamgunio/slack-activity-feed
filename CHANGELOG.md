@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.5.2"></a>
+## [1.5.2](https://github.com/teamgunio/slack-activity-feed/compare/v1.5.1...v1.5.2) (2018-10-19)
+
+
+### Bug Fixes
+
+* adds RTM error handler ([83cf9e1](https://github.com/teamgunio/slack-activity-feed/commit/83cf9e1))
+* adds RTM handlers/logging for lifecycle events ([7854ba5](https://github.com/teamgunio/slack-activity-feed/commit/7854ba5))
+* fixes issues with error RTM lifecycle handlers; adds ready state handler ([8e97011](https://github.com/teamgunio/slack-activity-feed/commit/8e97011))
+
+
+
 <a name="1.5.1"></a>
 ## [1.5.1](https://github.com/teamgunio/slack-activity-feed/compare/v1.5.0...v1.5.1) (2018-10-19)
 
